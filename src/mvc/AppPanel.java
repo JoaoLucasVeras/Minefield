@@ -81,6 +81,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     protected void handleException(Exception e) {
         Utilities.error(e);
     }
+    
+    
 
     class ControlPanel extends JComponent {
         /*probably not needed because specifies too much

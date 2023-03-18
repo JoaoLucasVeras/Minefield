@@ -8,11 +8,11 @@ public interface AppFactory {
 	
 	public String getTitle();
 	
-	public String getHelp();
+	public String[] getHelp();
 	
 	public String about();
 	
-	public String getEditCommands();
+	public String[] getEditCommands();
 	
-	public Command makeEditCommands(String name);
+	public Command makeEditCommands(Model model, String type, Object source);
 }

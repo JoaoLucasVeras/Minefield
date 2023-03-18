@@ -121,5 +121,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     protected void handleException(Exception e) {
         // ???
     }
+    
+    
 
 }

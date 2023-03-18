@@ -59,82 +59,19 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         JMenuBar result = new JMenuBar();
         JMenu fileMenu = Utilities.makeMenu("File", new String[]{"New", "Save", "Open", "Quit"}, this);
         result.add(fileMenu);
-        JMenu editMenu = Utilities.makeMenu("Edit", new String[]{"N", "NE", "E", "SE", "S", "SW", "W", "NW"}, this);
+        JMenu editMenu = Utilities.makeMenu("Edit", factory.getEditCommands()), this);
         result.add(editMenu);
-        JMenu helpMenu = Utilities.makeMenu("Help", new String[]{"About", "Help"}, this);
+        JMenu helpMenu = Utilities.makeMenu("Help", new String[]{factory.about(), factory.getHelp()}, this);
         result.add(helpMenu);
         return result;
     }
 
     public void actionPerformed(ActionEvent ae) {
         String cmmd = ae.getActionCommand();
+        Command command = factory.makeEditCommand(model, cmmd, ae.getSource());
         try {
-            switch (cmmd) {
-                case "N": {
-                    break;
-                }
-                case "NE": {
-                    break;
-                }
-                case "E": {
-                    break;
-                }
-                case "SE": {
-                    break;
-                }
-                case "S": {
-                    break;
-                }
-                case "SW": {
-                    break;
-                }
-                case "W": {
-                    break;
-                }
-                case "NW": {
-                    break;
-                }
-                case "New": {
-                    if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-                        this.setModel(new Model());
-                    }
-                    break;
-                }
-                case "Save": {
-                    String fName = Utilities.getFileName((String) null, false);
-                    ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fName));
-                    os.writeObject(this.model);
-                    os.close();
-                    break;
-                }
-                case "Open": {
-                    if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-                        String fName = Utilities.getFileName((String) null, true);
-                        ObjectInputStream is = new ObjectInputStream(new FileInputStream(fName));
-                        this.setModel((Model) is.readObject());
-                        is.close();
-                    }
-                    break;
-                }
-                case "Quit": {
-                    if (Utilities.confirm("Are you sure? Unsaved changes will be lost!"))
-                        System.exit(0);
-                    break;
-                }
-                case "About": {
-                    Utilities.inform("Joao Lucas Veras, William Tran, MineField, 2023. All rights reserved.");
-                    break;
-                }
-                case "Help": {
-                    String[] cmmds = new String[]{
-                            "N: move North \nNE: move Northeast \nE: move East \nSE: move Southeast \nS: move South \nSW: move Southwest \nW: move West \nNW: move Northwest \n",
-                    };
-                    Utilities.inform(cmmds);
-                    break;
-
-                }
-            }
-        } catch (Exception e){
+            command.execute();
+        } catch (Exception e) {
             handleException(e);
         }
     }
@@ -143,4 +80,19 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         Utilities.error(e);
     }
 
+    class ControlPanel extends JComponent {
+        /*probably not needed because specifies too much
+        public ControlPanel() {
+            setBackground(Color.PINK);
+            JPanel p = new JPanel();
+            String[] cmmds = factory.getEditCommands();
+            p.setLayout(new GridLayout(3,3)); //there HAS to be a better way to make a layout
+            for (String cmmd : cmmds) {
+                JButton n = new JButton(cmmd);
+                n.addActionListener(AppPanel.this);
+                p.add(n);
+            }
+            add(p);
+        }*/
+    }
 }

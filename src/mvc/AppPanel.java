@@ -1,5 +1,5 @@
 package mvc;
 
-public class AppPanel {
+public class AppPanel extends JPanel implements PropertyChangeListener,  ActionListener{
 
 }

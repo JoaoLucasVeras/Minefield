@@ -11,6 +11,7 @@ import java.util.*;
 import javax.swing.*;
 
 
+
 public class AppPanel extends JPanel implements PropertyChangeListener, ActionListener  {
 
     protected Model model;
@@ -23,18 +24,23 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
     public AppPanel(AppFactory factory) {
         super();
+        
         model = factory.makeModel();
-        this.factory = factory;
-//      view = new View(model);
+        
         view = factory.makeView(model);
         view.setModel(model);
+        
+        this.factory = factory;
         controlPanel = new ControlPanel();
+        
         this.setLayout((new GridLayout(1, 2)));
         this.add(controlPanel);
         this.add(view);
+        
         frame = new SafeFrame();
         Container cp = frame.getContentPane();
         cp.add(this);
+        
         frame.setJMenuBar(this.createMenuBar());
         frame.setTitle("MineField");
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -62,21 +68,21 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         model.changed();
     }
 
-    protected JMenuBar createMenuBar() {
+    protected JMenuBar createMenuBar() { //make menu bar
         JMenuBar result = new JMenuBar();
         JMenu fileMenu = Utilities.makeMenu("File", new String[]{"New", "Save", "Save As", "Open", "Quit"}, this);
         result.add(fileMenu);
         JMenu editMenu = Utilities.makeMenu("Edit", factory.getEditCommands(), this);
         result.add(editMenu);
-        JMenu helpMenu = Utilities.makeMenu("Help", factory.getHelp(), this);
+        JMenu helpMenu = Utilities.makeMenu("Help", new String[] {"Help", "About"}, this);
         result.add(helpMenu);
         return result;
     }
 
-    public void actionPerformed(ActionEvent ae) {
+    public void actionPerformed(ActionEvent ae) { //gets action performed
         String cmmd = ae.getActionCommand();
         Command command = factory.makeEditCommand(model, cmmd, ae.getSource());
-        boolean check = false;
+        
         try {
         	switch(cmmd) 
         	{
@@ -88,15 +94,13 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	            	ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(model.getFileName()));
 	                os.writeObject(this.model);
 	                os.close();
-	                check = true;
 	            	break;
 	            }
 	            case "Save As": { //finds a new save file location
-	                
+	            	model.setFileName(Utilities.getFileName((String) null, false));
 	                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(model.getFileName()));
 	                os.writeObject(this.model);
 	                os.close();
-	                check = true;
 	                break;
 	            }
 	
@@ -109,29 +113,36 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                    view.setModel(model);
 	                    is.close();
 	                }
-	                check = true;
 	                break;
 	
 	            }
 	
 	            case "New": { //makes a new canvas
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-	                    view.setModel(factory.makeModel());
 	                    model = factory.makeModel();
+	                    view.setModel(model);
 	                }
-	                check = true;
 	                break;
 	            }
 	
 	            case "Quit": { //closes project
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!"))
 	                    System.exit(0);
-	                check = true;
 	                break;
 	            }
+	            case "About": { //informs user about creator info
+                    Utilities.inform(factory.about());
+                    break;
+                }
+
+                case "Help": { //tells user about what each command/button does
+                    Utilities.inform(factory.getHelp());
+                    break;
+
+                }
 	           
         	}
-        	if(!check) 
+        	if(command != null) //action occurs on control panel
         	{
         		command.execute();
         	}
@@ -149,18 +160,10 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
     class ControlPanel extends JPanel {
     	
-        /*probably not needed because specifies too much
-        public ControlPanel() {
+        public ControlPanel() 
+        {
             setBackground(Color.PINK);
-            JPanel p = new JPanel();
-            String[] cmmds = factory.getEditCommands();
-            p.setLayout(new GridLayout(3,3)); //there HAS to be a better way to make a layout
-            for (String cmmd : cmmds) {
-                JButton n = new JButton(cmmd);
-                n.addActionListener(AppPanel.this);
-                p.add(n);
-            }
-            add(p);
-        }*/
-    }
+        }
+            
+     }
 }

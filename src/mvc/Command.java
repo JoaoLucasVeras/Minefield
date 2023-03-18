@@ -2,18 +2,14 @@ package mvc;
 
 import java.awt.event.ActionEvent;
 
-public class Command {
+public abstract class Command {
 
+	private Model model;
 	
-	public void actionPerformed(ActionEvent ae) {
-		   try {
-		     // handle control actions here
-		   } catch (Exception e) {
-		   handleException(e);
-		   }
-		}
-
-		protected void handleException(Exception e) {
-		Utilities.error(e);
-		}
+	public Command(Model model) {
+		// TODO Auto-generated constructor stub
+		this.model = model;
+	}
+	
+	public abstract void execute();
 }

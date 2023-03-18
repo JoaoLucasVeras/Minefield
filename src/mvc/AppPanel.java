@@ -141,40 +141,4 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         // ???
     }
 
-    class ControlPanel extends JPanel {
-        public ControlPanel() {
-            setBackground(Color.PINK);
-            JPanel p = new JPanel();
-            p.setLayout(new GridLayout(2, 4));
-            JButton n = new JButton("N");
-            n.addActionListener(AppPanel.this);
-            p.add(n);
-            JButton ne = new JButton("NE");
-            ne.addActionListener(AppPanel.this);
-            p.add(ne);
-            JButton e = new JButton("E");
-            e.addActionListener(AppPanel.this);
-            p.add(e);
-            JButton se = new JButton("SE");
-            se.addActionListener(AppPanel.this);
-            p.add(se);
-            JButton s = new JButton("S");
-            s.addActionListener(AppPanel.this);
-            p.add(s);
-            JButton sw = new JButton("SW");
-            sw.addActionListener(AppPanel.this);
-            p.add(sw);
-            JButton w = new JButton("W");
-            w.addActionListener(AppPanel.this);
-            p.add(w);
-            JButton nw = new JButton("NW");
-            nw.addActionListener(AppPanel.this);
-            p.add(nw);
-            add(p);
-        }
-    }
-        public static void main(String[] args) {
-            AppPanel app = new AppPanel();
-        }
 }
-

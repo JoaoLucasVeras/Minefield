@@ -61,9 +61,9 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         JMenuBar result = new JMenuBar();
         JMenu fileMenu = Utilities.makeMenu("File", new String[]{"New", "Save", "Open", "Quit"}, this);
         result.add(fileMenu);
-        JMenu editMenu = Utilities.makeMenu("Edit", factory.getEditCommands()), this);
+        JMenu editMenu = Utilities.makeMenu("Edit", factory.getEditCommands(), this);
         result.add(editMenu);
-        JMenu helpMenu = Utilities.makeMenu("Help", new String[]{factory.about(), factory.getHelp()}, this);
+        JMenu helpMenu = Utilities.makeMenu("Help", factory.getHelp(), this);
         result.add(helpMenu);
         return result;
     }
@@ -84,7 +84,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     
     
 
-    class ControlPanel extends JComponent {
+    class ControlPanel extends JPanel {
+    	
         /*probably not needed because specifies too much
         public ControlPanel() {
             setBackground(Color.PINK);

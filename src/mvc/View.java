@@ -8,7 +8,7 @@ import java.beans.*;
 import java.util.*;
 
 public class View extends JPanel implements PropertyChangeListener {
-	private Model model;
+	protected Model model;
 
 	public View(Model newModel) {
 		model = newModel;

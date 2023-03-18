@@ -3,6 +3,8 @@ package mvc;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 import javax.swing.*;
 

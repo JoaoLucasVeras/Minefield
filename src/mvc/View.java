@@ -25,8 +25,9 @@ public class View extends JPanel implements PropertyChangeListener {
 		this.model.addPropertyChangeListener(this);
 		repaint();
 	}
-
-	public propertyChange(PropertyChangeEvent evt){
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
 		repaint();
 	}
 

@@ -3,6 +3,8 @@ package mvc;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 import javax.swing.*;
 
@@ -70,30 +72,6 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         String cmmd = ae.getActionCommand();
         try {
             switch (cmmd) {
-                case "N": {
-                    break;
-                }
-                case "NE": {
-                    break;
-                }
-                case "E": {
-                    break;
-                }
-                case "SE": {
-                    break;
-                }
-                case "S": {
-                    break;
-                }
-                case "SW": {
-                    break;
-                }
-                case "W": {
-                    break;
-                }
-                case "NW": {
-                    break;
-                }
                 case "New": {
                     if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
                         this.setModel(new Model());
@@ -135,6 +113,9 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
                 }
             }
         }
+        catch (Exception e) {
+			// TODO: handle exception
+		}
     }
 
     protected void handleException(Exception e) {

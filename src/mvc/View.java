@@ -16,6 +16,7 @@ public class View extends JPanel implements PropertyChangeListener {
 		Border blackline = BorderFactory.createLineBorder(Color.black);
 		setBorder(blackline);
 		setBackground(Color.LIGHT_GRAY);
+		repaint();
 	}
 	public void setModel(Model newModel) {
 		this.model.removePropertyChangeListener(this);

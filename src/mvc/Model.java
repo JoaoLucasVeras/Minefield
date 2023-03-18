@@ -1,6 +1,6 @@
 package mvc;
 
-public class Model extends Bean{
+public abstract class Model extends Bean{
 
 	private String fName;
 	private boolean unsavedChanges;
@@ -8,11 +8,6 @@ public class Model extends Bean{
 		// TODO Auto-generated constructor stub
 		fName = null;
 		unsavedChanges = false;
-		
-	}
-
-	public void changed() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -34,6 +29,12 @@ public class Model extends Bean{
 	public boolean getUnsavedChanges() {
 		// TODO Auto-generated method stub
 		return unsavedChanges;
+	}
+
+	public void changed() {
+		// TODO Auto-generated method stub
+		unsavedChanges = true;
+		firePropertyChange(fName, null, this);
 	}
 	
 	

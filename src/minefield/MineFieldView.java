@@ -37,6 +37,11 @@ public class MineFieldView extends View {
             	   cells[row][col].setBackground(Color.white);
             	   cells[row][col].setBorder(BorderFactory.createLineBorder(Color.green));
                }
+               if(cells[row][col].patch.bomb) 
+               {
+            	   cells[row][col].setBackground(Color.red);
+            	   cells[row][col].setText("X");
+               }
             }
         }
     }

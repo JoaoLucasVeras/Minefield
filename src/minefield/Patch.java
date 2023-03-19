@@ -12,4 +12,6 @@ public class Patch {
 
 	public boolean goal;
 
+	public boolean bomb;
+
 }

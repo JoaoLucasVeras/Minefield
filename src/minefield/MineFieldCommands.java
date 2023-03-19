@@ -8,13 +8,14 @@ public class MineFieldCommands extends Command{
 	Heading heading;
 	public MineFieldCommands(Model model) {
 		super(model);
-		// TODO Auto-generated constructor stub
+		heading = null;
 	}
 
 	@Override
 	public void execute() throws Exception {
-		// TODO Auto-generated method stub
-		
+		MineField minefield = new MineField;
+		minefield.move(heading);
+		//TO-DO throw exceptions for off screen, stepping on mine, reaching goal, moving after goal
 	}
 
 }

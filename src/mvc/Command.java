@@ -7,7 +7,6 @@ public abstract class Command {
 	protected Model model;
 	
 	public Command(Model model) {
-		// TODO Auto-generated constructor stub
 		this.model = model;
 	}
 	

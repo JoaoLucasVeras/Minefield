@@ -1,5 +1,12 @@
 package minefield;
 
-public class Heading {
-
+public enum Heading {
+    N,
+    NE,
+    E,
+    SE,
+    S,
+    SW,
+    W,
+    NW
 }

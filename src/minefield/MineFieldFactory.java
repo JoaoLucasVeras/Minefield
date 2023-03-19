@@ -14,7 +14,7 @@ public class MineFieldFactory implements AppFactory{
 
 	@Override
 	public View makeView(Model model) {
-		return new MineFieldView(model);
+		return new MineFieldView((MineField)model);
 	}
 
 	@Override
@@ -60,36 +60,36 @@ public class MineFieldFactory implements AppFactory{
 		Command command = null;
 		switch (cmmd) {
 			case "N":
-				command = new MineField(model);
-				command.heading = Heading.N;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.N;
 				break;
 			case "NE":
-				command = new MineField(model);
-				command.heading = Heading.NE;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.NE;
 				break;
 			case "E":
-				command = new MineField(model);
-				command.heading = Heading.E;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.E;
 				break;
 			case "SE":
-				command = new MineField(model);
-				command.heading = Heading.SE;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.SE;
 				break;
 			case "S":
-				command = new MineField(model);
-				command.heading = Heading.S;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.S;
 				break;
 			case "SW":
-				command = new MineField(model);
-				command.heading = Heading.SW;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.SW;
 				break;
 			case "W":
-				command = new MineField(model);
-				command.heading = Heading.W;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.W;
 				break;
 			case "NW":
-				command = new MineField(model);
-				command.heading = Heading.NW;
+				command = new MineFieldCommands(model);
+				((MineFieldCommands)command).heading = Heading.NW;
 				break;
 		}
 		return command;

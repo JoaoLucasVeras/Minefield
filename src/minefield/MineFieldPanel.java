@@ -21,49 +21,55 @@ public class MineFieldPanel extends AppPanel{
 		JPanel panel = new JPanel();
 		
 		JButton northWest = new JButton("NW");
-		northWest.setActionCommand("NorthWest");
+		northWest.setActionCommand("NW");
 		northWest.addActionListener(this);
 		panel.add(northWest);
 		controlPanel.add(panel);
 		
 		JButton north = new JButton("N");
-		north.setActionCommand("North");
+		north.setActionCommand("N");
 		north.addActionListener(this);
 		panel.add(north);
 		controlPanel.add(panel);
 		
+		panel = new JPanel();
+		
 		JButton northEast = new JButton("NE");
-		northEast.setActionCommand("NorthEast");
+		northEast.setActionCommand("NE");
 		northEast.addActionListener(this);
 		panel.add(northEast);
 		controlPanel.add(panel);
 		
 		JButton west = new JButton("W");
-		west.setActionCommand("West");
+		west.setActionCommand("W");
 		west.addActionListener(this);
 		panel.add(west);
 		controlPanel.add(panel);
 		
+		panel = new JPanel();
+		
 		JButton east = new JButton("E");
-		east.setActionCommand("East");
+		east.setActionCommand("E");
 		east.addActionListener(this);
 		panel.add(east);
 		controlPanel.add(panel);
 		
 		JButton southWest = new JButton("SW");
-		southWest.setActionCommand("SouthWest");
+		southWest.setActionCommand("SW");
 		southWest.addActionListener(this);
 		panel.add(southWest);
 		controlPanel.add(panel);
 		
+		panel = new JPanel();
+		
 		JButton south = new JButton("S");
-		south.setActionCommand("South");
+		south.setActionCommand("S");
 		south.addActionListener(this);
 		panel.add(south);
 		controlPanel.add(panel);
 		
 		JButton southEast = new JButton("SE");
-		southEast.setActionCommand("SouthEast");
+		southEast.setActionCommand("SE");
 		southEast.addActionListener(this);
 		panel.add(southEast);
 		controlPanel.add(panel);
@@ -74,8 +80,10 @@ public class MineFieldPanel extends AppPanel{
 	
 	 @Override
 	    public void propertyChange(PropertyChangeEvent evt) {
-	        /*super.propertyChange(evt);
-	        Brick brick = (Brick) model;*/
+	        super.propertyChange(evt);
+	        /*AppFactory factory = new MineFieldFactory();
+			factory.makeView(model);*/
+	        MineField minefield = (MineField) model;
 	        
 	    }
 	 

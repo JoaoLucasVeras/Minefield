@@ -54,6 +54,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     //
     public void propertyChange(PropertyChangeEvent evt) {
         /* override in extensions if needed */
+    	
     }
 
     public Model getModel() { return model; }
@@ -110,7 +111,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                    model.setFileName(Utilities.getFileName((String) null, true));
 	                    ObjectInputStream is = new ObjectInputStream(new FileInputStream(model.getFileName()));
 	                    model = (Model) is.readObject();
-	                    view.setModel(model);
+	                    setModel(model);
 	                    is.close();
 	                }
 	                break;
@@ -119,9 +120,10 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	
 	            case "New": { //makes a new canvas
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-	                    
+	                     
 	                	model = factory.makeModel();
-	                    view.setModel(model);
+	                	view = factory.makeView(model);
+	                    setModel(model);
 	                }
 	                break;
 	            }

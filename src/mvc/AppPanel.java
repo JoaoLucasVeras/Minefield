@@ -42,8 +42,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         cp.add(this);
         
         frame.setJMenuBar(this.createMenuBar());
-        frame.setTitle("MineField");
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setTitle(factory.getTitle());
         frame.setVisible(true);
     }
 
@@ -119,7 +119,8 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	
 	            case "New": { //makes a new canvas
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-	                    model = factory.makeModel();
+	                    
+	                	model = factory.makeModel();
 	                    view.setModel(model);
 	                }
 	                break;
@@ -147,7 +148,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         		command.execute();
         	}
             
-        } catch (Exception e) {
+       } catch (Exception e) {
             handleException(e);
         }
     }

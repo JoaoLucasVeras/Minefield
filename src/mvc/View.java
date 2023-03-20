@@ -16,6 +16,7 @@ public class View extends JPanel implements PropertyChangeListener {
 		setBackground(Color.LIGHT_GRAY);
 	}
 	public void setModel(Model newModel) {
+		//	remove(this);
 		this.model.removePropertyChangeListener(this);
 		this.model = newModel;
 		this.model.initSupport(); // defined in Bean

@@ -1,5 +1,7 @@
 package minefield;
 
+import java.io.Serializable;
+
 import mvc.Model;
 
 public class MineField extends Model{

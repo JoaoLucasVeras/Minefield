@@ -11,12 +11,9 @@ public class MineFieldCommands extends Command{
 		heading = null;
 	}
 
-	
 	@Override
 	public void execute() throws Exception {
 		MineField minefield = (MineField)model;
 		minefield.move(heading);
-		//TO-DO throw exceptions for off screen, stepping on mine, reaching goal, moving after goal
 	}
-
 }

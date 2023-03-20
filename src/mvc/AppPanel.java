@@ -51,7 +51,6 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     // called in main
     public void display() { frame.setVisible(true); }
 
-    //
     public void propertyChange(PropertyChangeEvent evt) {
         /* override in extensions if needed */
     	
@@ -87,8 +86,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
         try {
         	switch(cmmd) 
         	{
-	        	case "Save":{ //saves project to a file
-	                
+	        	case "Save": { //saves project to a file
 	            	if(model.getFileName() == null) { //if the project is not already saved in a file find a new location
 	            		model.setFileName(Utilities.getFileName((String) null, false));
 	            	}
@@ -97,6 +95,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                os.close();
 	            	break;
 	            }
+
 	            case "Save As": { //finds a new save file location
 	            	model.setFileName(Utilities.getFileName((String) null, false));
 	                ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(model.getFileName()));
@@ -106,7 +105,6 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	            }
 	
 	            case "Open": { //opens file with saved project
-	
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
 	                    model.setFileName(Utilities.getFileName((String) null, true));
 	                    ObjectInputStream is = new ObjectInputStream(new FileInputStream(model.getFileName()));
@@ -125,7 +123,6 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	
 	            case "New": { //makes a new canvas
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-	                     
 	                	model = factory.makeModel();
                         this.remove(view);
                         view = factory.makeView(model);
@@ -141,6 +138,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                    System.exit(0);
 	                break;
 	            }
+
 	            case "About": { //informs user about creator info
                     Utilities.inform(factory.about());
                     break;
@@ -149,15 +147,13 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
                 case "Help": { //tells user about what each command/button does
                     Utilities.inform(factory.getHelp());
                     break;
-
                 }
-	           
         	}
+
         	if(command != null) //action occurs on control panel
         	{
         		command.execute();
         	}
-            
        } catch (Exception e) {
             handleException(e);
         }
@@ -166,15 +162,11 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     protected void handleException(Exception e) {
         Utilities.error(e);
     }
-    
-    
 
     class ControlPanel extends JPanel {
-    	
         public ControlPanel() 
         {
             setBackground(Color.PINK);
         }
-            
      }
 }

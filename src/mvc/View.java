@@ -29,6 +29,7 @@ public class View extends JPanel implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		// TODO Auto-generated method stub
+		revalidate();
 		repaint();
 	}
 

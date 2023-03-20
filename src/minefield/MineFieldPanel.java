@@ -6,7 +6,6 @@ import java.beans.PropertyChangeEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import bc.Brick;
 import mvc.AppFactory;
 import mvc.AppPanel;
 

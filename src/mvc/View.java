@@ -3,9 +3,7 @@ package mvc;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.*;
 import java.beans.*;
-import java.util.*;
 
 public class View extends JPanel implements PropertyChangeListener {
 	protected Model model;

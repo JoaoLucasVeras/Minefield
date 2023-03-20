@@ -1,7 +1,5 @@
 package mvc;
 
-import java.awt.event.ActionEvent;
-
 public abstract class Command {
 
 	protected Model model;

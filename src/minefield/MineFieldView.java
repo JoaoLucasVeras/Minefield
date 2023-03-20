@@ -40,7 +40,7 @@ public class MineFieldView extends View {
                }
 			   if (cells[row][col].patch.visited)
 			   {
-				   cells[row][col].setText("" + findBomb(row,col));
+				   cells[row][col].setText("" + cells[row][col].patch.numMinedNums);
 			   }
 			   add(cells[row][col]);
             }

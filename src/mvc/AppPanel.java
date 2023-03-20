@@ -12,8 +12,8 @@ import javax.swing.*;
 /**
  * Provides the GUI while connecting JPanel inputs to the model. It will
  * also handle exceptions, file saving/opening, and information.
- * @author William Tran
  * @author Joao Lucas Veras
+ * @author William Tran
  * @version %I%, %G%
  */
 public class AppPanel extends JPanel implements PropertyChangeListener, ActionListener  {

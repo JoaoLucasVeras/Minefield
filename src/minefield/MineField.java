@@ -1,5 +1,7 @@
 package minefield;
 
+import java.io.Serializable;
+
 import mvc.Model;
 
 public class MineField extends Model{
@@ -7,7 +9,7 @@ public class MineField extends Model{
 	private int dim;
 	Patch patch;
 	public MineField() {
-		dim = 10;
+		dim = 20;
 		patch = new Patch(dim);
 	}
 

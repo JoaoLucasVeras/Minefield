@@ -81,8 +81,6 @@ public class MineFieldPanel extends AppPanel{
 	 @Override
 	    public void propertyChange(PropertyChangeEvent evt) {
 	        super.propertyChange(evt);
-	        /*AppFactory factory = new MineFieldFactory();
-			factory.makeView(model);*/
 	        MineField minefield = (MineField) model;
 	        
 	    }

@@ -19,6 +19,7 @@ public class View extends JPanel implements PropertyChangeListener {
 		//repaint();
 	}
 	public void setModel(Model newModel) {
+		//	remove(this);
 		this.model.removePropertyChangeListener(this);
 		this.model = newModel;
 		this.model.initSupport(); // defined in Bean
@@ -29,6 +30,7 @@ public class View extends JPanel implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		// TODO Auto-generated method stub
+		revalidate();
 		repaint();
 	}
 

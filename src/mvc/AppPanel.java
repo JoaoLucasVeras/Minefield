@@ -54,6 +54,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
     //
     public void propertyChange(PropertyChangeEvent evt) {
         /* override in extensions if needed */
+    	//evt.getNewValue();
     	
     }
 
@@ -61,12 +62,12 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 
     // called by file/open and file/new
     public void setModel(Model newModel) {
-        this.model.removePropertyChangeListener(this);
-        this.model = newModel;
-        this.model.initSupport(); // defined in Bean
-        this.model.addPropertyChangeListener(this);
-        view.setModel(this.model);
-        model.changed();
+            this.model.removePropertyChangeListener(this);
+            this.model = newModel;
+            this.model.initSupport(); // defined in Bean
+            this.model.addPropertyChangeListener(this);
+            view.setModel(newModel);
+            model.changed();       
     }
 
     protected JMenuBar createMenuBar() { //make menu bar
@@ -110,8 +111,13 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
 	                    model.setFileName(Utilities.getFileName((String) null, true));
 	                    ObjectInputStream is = new ObjectInputStream(new FileInputStream(model.getFileName()));
-	                    model = (Model) is.readObject();
+	                    model = (Model) is.readObject(); 
+	                    this.model.initSupport();
+	                    this.remove(view);
+	                    view = factory.makeView(model);
 	                    setModel(model);
+                    	this.add(view);
+	                    revalidate();
 	                    is.close();
 	                }
 	                break;
@@ -120,10 +126,12 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	
 	            case "New": { //makes a new canvas
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
-	                     
 	                	model = factory.makeModel();
+	                	this.remove(view);
 	                	view = factory.makeView(model);
 	                    setModel(model);
+	                    this.add(view);
+	                    revalidate();
 	                }
 	                break;
 	            }

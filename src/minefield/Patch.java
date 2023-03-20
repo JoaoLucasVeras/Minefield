@@ -1,8 +1,9 @@
 package minefield;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Patch{
+public class Patch implements Serializable{
 	
 	public int numMinedNums;
 	

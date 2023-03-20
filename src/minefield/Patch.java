@@ -1,9 +1,12 @@
 package minefield;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Patch implements Serializable {
+
+public class Patch implements Serializable{
+
 	
 	public int numMinedNums;
 	
@@ -18,7 +21,7 @@ public class Patch implements Serializable {
 	public int occupiedX;
 	public int occupiedY;
 	public Patch[][] patch;
-	
+	//public ArrayList<Patch> bombPatch;
 	public Patch() 
 	{
 		numMinedNums = 0;
@@ -48,5 +51,74 @@ public class Patch implements Serializable {
 		}
 		patch[0][0].occupied = true;
 		patch[dim - 1][dim - 1].goal = true;
+		for(int i = 0; i<dim; i++) 
+		{
+			for(int j = 0; j<dim; j++) 
+			{
+				patch[i][j].numMinedNums = findBomb(i, j);
+			}
+		}
 	}
+	
+	public int findBomb(int row, int col) 
+    {
+    	int bombCount = 0;
+    	if (row - 1 >=0)
+    	{
+    		if (patch[row - 1][col].bomb)
+    		{
+    			bombCount++;
+    		}
+    		if (col - 1 >= 0)
+    		{
+    			if(patch[row - 1][col - 1].bomb)
+        		{
+        			bombCount++;
+        		}
+    		}
+    		if(col + 1 < dim) 
+    		{
+    			if(patch[row - 1][col + 1].bomb) 
+        		{
+        			bombCount++;
+        		}
+    		}
+    	}
+    	if (row + 1 < dim)
+    	{
+    		if (patch[row + 1][col].bomb)
+    		{
+    			bombCount++;
+    		}
+    		if (col - 1 >= 0)
+    		{
+    			if(patch[row + 1][col - 1].bomb)
+        		{
+        			bombCount++;
+        		}
+    		}
+    		if (col + 1 < dim)
+    		{
+    			if (patch[row + 1][col + 1].bomb)
+        		{
+        			bombCount++;
+        		}
+    		}
+    	}
+    	if (col - 1 >= 0)
+		{
+			if (patch[row][col - 1].bomb)
+    		{
+    			bombCount++;
+    		}
+		}
+    	if (col + 1 < dim)
+		{
+			if(patch[row][col + 1].bomb)
+    		{
+    			bombCount++;
+    		}
+		}
+    	return bombCount;
+    }
 }

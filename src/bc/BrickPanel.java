@@ -49,7 +49,7 @@ public class BrickPanel extends AppPanel {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        super.propertyChange(evt);
+    	super.propertyChange(evt);
         Brick brick = (Brick) model;
         heightField.setText("" + brick.getHeight());
         widthField.setText("" + brick.getWidth());

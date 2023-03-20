@@ -46,69 +46,7 @@ public class MineFieldView extends View {
             }
         }
     }
-
-    public int findBomb(int row, int col) 
-    {
-    	int bombCount = 0;
-    	if (row - 1 >=0)
-    	{
-    		if (cells[row - 1][col].patch.bomb)
-    		{
-    			bombCount++;
-    		}
-    		if (col - 1 >= 0)
-    		{
-    			if(cells[row - 1][col - 1].patch.bomb)
-        		{
-        			bombCount++;
-        		}
-    		}
-    		if(col + 1 < dim) 
-    		{
-    			if(cells[row - 1][col + 1].patch.bomb) 
-        		{
-        			bombCount++;
-        		}
-    		}
-    	}
-    	if (row + 1 < dim)
-    	{
-    		if (cells[row + 1][col].patch.bomb)
-    		{
-    			bombCount++;
-    		}
-    		if (col - 1 >= 0)
-    		{
-    			if(cells[row + 1][col - 1].patch.bomb)
-        		{
-        			bombCount++;
-        		}
-    		}
-    		if (col + 1 < dim)
-    		{
-    			if (cells[row + 1][col + 1].patch.bomb)
-        		{
-        			bombCount++;
-        		}
-    		}
-    	}
-    	if (col - 1 >= 0)
-		{
-			if (cells[row][col - 1].patch.bomb)
-    		{
-    			bombCount++;
-    		}
-		}
-    	if (col + 1 < dim)
-		{
-			if(cells[row][col + 1].patch.bomb)
-    		{
-    			bombCount++;
-    		}
-		}
-    	return bombCount;
-    }
-
+        
     public void propertyChange(PropertyChangeEvent evt) {
     	for (int i = 0; i < cells.length; i++)
     	{
@@ -121,7 +59,7 @@ public class MineFieldView extends View {
     			}
     			if (cells[i][j].patch.occupied)
     			{
-    				cells[i][j].setText("" + findBomb(i, j));
+    				cells[i][j].setText("" + cells[i][j].patch.numMinedNums);
     				cells[i][j].setBorder(new LineBorder(Color.blue));
     			}
     		}

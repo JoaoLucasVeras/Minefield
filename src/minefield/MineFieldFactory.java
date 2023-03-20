@@ -94,5 +94,4 @@ public class MineFieldFactory implements AppFactory{
 		}
 		return command;
 	}
-
 }

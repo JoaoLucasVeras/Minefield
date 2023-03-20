@@ -81,23 +81,17 @@ public class MineFieldPanel extends AppPanel{
 		southEast.addActionListener(this);
 		panel.add(southEast);
 		controlPanel.add(panel);
-		
-		
-		// TODO Auto-generated constructor stub
 	}
 	
 	 @Override
 	    public void propertyChange(PropertyChangeEvent evt) {
 	        super.propertyChange(evt);
 	        MineField minefield = (MineField) model;
-	        
 	    }
 	 
 	 public static void main(String[] args) {
 		AppFactory factory = new MineFieldFactory();
 		AppPanel panel = new MineFieldPanel(factory);
 		panel.display();
-		 
 	}
-
 }

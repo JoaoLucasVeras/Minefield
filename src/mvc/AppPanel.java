@@ -105,13 +105,18 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                break;
 	            }
 	
-	            case "Open": { //opens file with saved turtle project
+	            case "Open": { //opens file with saved project
 	
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
 	                    model.setFileName(Utilities.getFileName((String) null, true));
 	                    ObjectInputStream is = new ObjectInputStream(new FileInputStream(model.getFileName()));
 	                    model = (Model) is.readObject();
-	                    setModel(model);
+                        this.model.initSupport();
+                        this.remove(view);
+                        view = factory.makeView(model);
+                        setModel(model);
+                        this.add(view);
+                        revalidate();
 	                    is.close();
 	                }
 	                break;
@@ -122,9 +127,12 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
 	                     
 	                	model = factory.makeModel();
-	                	view = factory.makeView(model);
-	                    setModel(model);
-	                }
+                        this.remove(view);
+                        view = factory.makeView(model);
+                        setModel(model);
+	                    this.add(view);
+                        revalidate();
+                    }
 	                break;
 	            }
 	

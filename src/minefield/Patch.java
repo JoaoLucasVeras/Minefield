@@ -3,12 +3,15 @@ package minefield;
 import java.io.Serializable;
 import java.util.Random;
 
+
 public class Patch implements Serializable{
+
 	
 	public int numMinedNums;
 	
 	public boolean occupied;
 	public boolean lastOccupied = false;
+	public boolean visited = false;
 
 	public boolean goal;
 

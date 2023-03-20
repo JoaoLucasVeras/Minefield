@@ -41,6 +41,10 @@ public class MineFieldView extends View {
             	   cells[row][col].setBackground(Color.white);
             	   cells[row][col].setBorder(BorderFactory.createLineBorder(Color.green));
                }
+			   if(cells[row][col].patch.visited)
+			   {
+				   cells[row][col].setText("" + cells[row][col].patch.numMinedNums);
+			   }
 //               if(cells[row][col].patch.bomb) 
 //               {
 //            	   cells[row][col].setText("X");
@@ -124,6 +128,7 @@ public class MineFieldView extends View {
     			if(cells[i][j].patch.lastOccupied) 
     			{
     				cells[i][j].setBorder(new LineBorder(Color.white));
+					cells[i][j].patch.visited = true;
     			}
     			if(cells[i][j].patch.occupied) 
     			{

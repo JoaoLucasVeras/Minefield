@@ -151,6 +151,7 @@ public class MineField extends Model{
 			}
 		}
 		changed();
+		patch.patch[patch.occupiedX][patch.occupiedY].visited = true;
 		if(patch.patch[patch.occupiedX][patch.occupiedY].bomb) 
 		{
 			throw new Exception("You have stepped on a mine, game over!");

@@ -106,7 +106,7 @@ public class AppPanel extends JPanel implements PropertyChangeListener, ActionLi
 	                break;
 	            }
 	
-	            case "Open": { //opens file with saved turtle project
+	            case "Open": { //opens file with saved project
 	
 	                if (Utilities.confirm("Are you sure? Unsaved changes will be lost!")) {
 	                    model.setFileName(Utilities.getFileName((String) null, true));
